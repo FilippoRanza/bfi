@@ -1,0 +1,216 @@
+.\"Filippo Ranza 
+.Dd 2017 July, 23
+.Dt BFI(1) "" "General Commands Manual"
+
+.Os LINUX
+.Sh NAME
+.Nm bfi
+.Nd execute Brainfuck programs
+.Sh SYNOPSIS
+.Nm
+.Op Fl h
+.Op Fl i
+.OP Fl I
+.Op Fl r Ar filename
+.Op Fl w Ar filename
+.Op Fl R Ar filename
+.Op Fl e Ar command Op argument ...
+.Op Fl d | Fl D 
+.Op Fl W
+.Op Ar program_file
+.Op Fl argument...
+
+
+.Sh DESCRIPTION
+Brainfuck is an esotheric programming language based on minimalism,
+invented by 
+.Ar Urban Müller 
+in 1993.
+.Pp
+bfi executes brainfuck programs in a sicure environment.
+.Pp
+bfi support several working mode:
+.Bl -tag -width 6n
+.It Sy  "standard"
+execute  given script and exit.
+.Pp
+.It Sy  "debug   "
+perform debug operation on given script
+.Pp 
+.It Sy  "interactive"
+execute code given from command line 
+.Pp
+.Sh OPTIONS
+.Bl -tag -width 6n
+.It Fl "d"
+run debug mode
+.Pp
+.It Fl "D"
+run waiting debug mode
+.Pp
+.It Fl "i"
+run interactive mode
+.Pp
+.It Fl "e" Ar command
+excute Brainfuck program give with command
+.Pp
+.It Fl "r" Ar filename 
+read input from 
+.Ar filename
+instead of 
+.Ar stdin
+(
+.Ar filename
+must exist
+)
+.Pp   
+.It Fl "w" Ar filename 
+write output to 
+.Ar filename
+instead of 
+.Ar stdout
+(
+.Ar filename
+must not exist
+)
+.Pp
+.It Fl "R" Ar filename
+open
+.Ar filename
+in inplace mode:
+read input from and write output to
+.Ar filename
+(
+.Ar filename
+must exist
+)
+.Pp   
+.It Fl "I"
+ignore  arguments given to brainfuck program
+.Pp
+.It Fl "W"
+enable executable and code warnings
+.Pp
+.It Fl "h"
+show a brief help message and exit
+.Pp
+
+.Sh PROGRAMMING INTERFACE
+
+Note for brainfuck programmers using bfi:
+
+.Ss Debug Mode:
+.Bl -tag -width 6n
+Debug command : '?', put it into che code when you  need to debug
+(with -d or -D option set)
+.Pp
+every  ? into the code enable debug mode, showing the following 
+information:
+.Pp
+.It "Current Memory Value"
+Shows value stored into the current memory location in 
+decimal and hexadecimal notation
+.It "Current Memory Location"
+Shows the memory location, relative to the head of the
+array
+.It "Debug Call Count"
+Shows the count of Debug Call so far.
+.Pp
+.El
+
+If debug mode is enable with D option(waiting debug)
+after each message program 
+execution stops and wait for user pressing return,
+otherwise program execution proceeds without pauses.
+    
+    
+.Ss Command Line Arguments:
+    command line arguments are put inside the main buffer:
+    the first argument is copied in the first location,the second is 
+    separated by a zero from the first and so on.
+    two consecutive zero represents the end of arguments.
+    
+
+.Ss EXIT VALUE
+Normally the exit value is 0,
+but if an error the possible exit values are:
+.Bl -tag -width 6n
+.It "1:"
+given 
+.Ar program_file
+does not exists
+.It "2:"
+given
+.Ar filename
+is not a regular file
+.It "3:"
+unable to open 
+.Ar filename
+.It "4:"
+unable to allocate memory
+.It "5:"
+unable to set the execution environment
+.It "6:"
+brainfuck program exit from available memory
+.It "7:"
+given 
+.Ar file
+/
+.Ar command
+does not contain brainfuck code
+.It "8:"
+given 
+.Ar program_file
+/
+.Ar command
+contains at least a not closed jump
+.It "9:"
+given 
+.Ar program_file
+/
+.Ar command
+contains at least a not opened jump
+.It "10:"
+output file already exists
+.El
+    
+.Sh INTERACTIVE CONSOLE
+A input_command is everything between the first character and the first
+space in the input string,the rest is input_command's argument.
+If there aren't spaces the command is the all input string.
+.Pp
+Here are listed the available command for the interactive shell:
+every input_command not matching them exactly is consider as Brainfuck code, and parsed
+as one big block(no distinction between command and arguments)
+underlined arguments are mandatory
+.Bl -tag -width 6n
+.It "Run" Ar filename Op argument
+execute given file.
+The argument for the called program can be only one,
+argument is not split there's a space inside it.
+.It "cl"
+clear many buffer and  reset memory location
+.It "help"
+show a brief help message
+.It "cd" Ar dirname 
+change working directory to 
+.Ar dirname
+,the path can be relative or absolute.
+~ is consider as $HOME,only if it is the first character.
+.It "pwd"
+prints current working directory
+.It "ls"
+list directory contents,showing hidden files.
+directory are printed blue, files regular color
+and .bf file(supposed to be brainfuck programs) are printed purple
+.It "exit"
+close the program.
+.El
+
+
+.Sh BUGS
+No bugs none,in any case feel free to contact the author
+
+
+.Sh AUTHOR
+Filippo Ranza filipporanza@gmail.com
