@@ -36,8 +36,8 @@
 typedef struct{
     
     void* ptr;
-    int memb;
-    int sz;
+    size_t memb;
+    size_t sz;
     
 }map;
 
@@ -52,7 +52,7 @@ typedef struct node{
 typedef struct{
     
     int available;
-    int nsz;
+    size_t nsz;
     
     node* first;
     node* last;

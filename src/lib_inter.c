@@ -194,7 +194,7 @@ static void run(char* fname){
     }
 
     command* cmd = getCommand();
-    clearFiles();
+    clearPrgFile();
     
     if(args != NULL)
     	setArgs((int8_t**)&args,1);

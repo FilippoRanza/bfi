@@ -19,6 +19,7 @@
 #define LIB_ARGS_H
 
 #include "brainfuck.h"
+#include "file_reader.h"
 
 //known cli arguments
 
@@ -31,6 +32,7 @@
 #define READ_F		'r'
 #define WRITE_F 	'w'
 #define HELP_A		'h'
+#define INPLACE     'R'
 
 #define FILE_MODE 1
 #define EXEC_MODE 2
@@ -46,6 +48,9 @@
 #define NO_PRG	-2
 #define NO_EXE  -3
 
+#define IN_PLACE 1
+#define STANDARD 0
+
 typedef struct{
     
     char* prg;
@@ -60,8 +65,7 @@ typedef struct{
     int pargc;
     char** pargv;
     
-    char* ifile;
-    char* ofile;
+    files f;
 
     char mode;
     char help;

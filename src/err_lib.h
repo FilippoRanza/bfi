@@ -36,7 +36,7 @@
 
 
 
-#define UNKNOW_OPT 10
+#define UNKNOWN_OPT 10
 #define NO_IN_PRG  11
 
 void setName(char* name);

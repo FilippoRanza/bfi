@@ -37,19 +37,21 @@
 #define NO_CODE  -9
 #define FILE_EXISTS -10
 
-
-void setupFiles();
+typedef struct {
+    char* ifile;
+    char* ofile;
+    int mode;
+}files;
 
 int setFile(char* fname);
 
-int setInputFile(char* fname);
-FILE* getInputFP();
+int setIOFiles(files* f);
 
-int setOutputFile(char* fname);
+FILE* getInputFP();
 FILE* getOutputFP();
 
 char* getBuffer();
 
-void clearFiles();
-
+void clearPrgFile();
+int closeIOFiles();
 #endif

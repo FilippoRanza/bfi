@@ -30,7 +30,7 @@ char* help = "Usage : bfi [options] [program file] [program arguments]\n"
 "\t-r file : reads from file instead of stdin\n"
 "\t-w file : writes to file instead of stdout\n"
 "\t-h      : show this help and exit\n"
-"Read the man page for more informations(it should be at 'man bfi')\n";
+"Read the man page for more information\n";
 
 
 

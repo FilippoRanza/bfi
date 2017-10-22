@@ -98,7 +98,7 @@ int8_t* check(int8_t* p){
     node* c = l->curr;
     int8_t* out = p; 
     
-    int delta = p - c->buff;
+    long delta = p - c->buff;
     if(delta < 0){
          
         if(c->prev != NULL){

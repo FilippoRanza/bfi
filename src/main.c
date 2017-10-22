@@ -21,11 +21,9 @@
 
 #include "file_reader.h"
 #include "mem_lib.h"
-#include "brainfuck.h"
 #include "err_lib.h"
 #include "compress.h"
 #include "execute.h"
-#include "lib_args.h"
 #include "warn_lib.h"
 #include "lib_inter.h"
 #include "help.h"
@@ -101,11 +99,11 @@ void dieFile(int code,char* fname){
 
 
 int main(int argc,char** argv){
- 
+
 	int ans;
 
     if(( ans = pass(argc,argv)) != OK){
-    	die(UNKNOW_OPT,"Unknown option:%c\n",getWrongOption());
+    	die(UNKNOWN_OPT,"Unknown option:%c\n",getWrongOption());
     }
 
 
@@ -116,21 +114,6 @@ int main(int argc,char** argv){
     	exit(0);
     }
 
-    setupFiles();
-
-    if(a->ifile != NULL){
-    	if((ans = setInputFile(a->ifile)) != OK){
-    		dieFile(ans,a->ifile);
-    	}
-    }
-    if(a->ofile != NULL){
-    	if((ans = setOutputFile(a->ofile)) != OK){
-    		dieFile(ans,a->ofile);
-    	}
-    }
-
-
-
     int mode = 0;
     if(a->warnlv)
         mode |= WARNING_CODE;
@@ -138,6 +121,11 @@ int main(int argc,char** argv){
         mode |= DEBUG_CODE;
 
     initialize();
+
+    if((ans = setIOFiles(&a->f)) != OK){
+        dieFile(ans,"MORE STRUCTURED ERROR MESSAGE");
+    }
+
     init(getInputFP(),getOutputFP());
 
 
@@ -153,7 +141,7 @@ int main(int argc,char** argv){
             	dieJump(ans,getJumps());
             }
 
-            clearFiles();
+            clearPrgFile();
         }
         else{
             if((ans = setCode(a->exe,mode)) != OK){
@@ -196,8 +184,11 @@ int main(int argc,char** argv){
         startConsole();
     }
 
-    releaseAll();
+    if(!closeIOFiles()){
+        printf("wwwwww\n");
+    }
 
+    releaseAll();
     return EXIT_SUCCESS;
     
 }

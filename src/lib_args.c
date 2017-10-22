@@ -18,10 +18,12 @@
 
 #include "lib_args.h"
 #include "err_lib.h"
+#include "file_reader.h"
 
 #define READ_STATE 1
 #define WRITE_STATE 2
-
+#define INPLACE_STATE 3
+#define PRG_STATE 4
 
 static args a;
 static char wrong;
@@ -56,6 +58,7 @@ int parseIOpt(char* arg){
                 break;
             case EXECUTE:
                 a.mode = EXEC_MODE;
+                state = PRG_STATE;
                 break;
             case READ_F:
             	state = READ_STATE;
@@ -63,13 +66,16 @@ int parseIOpt(char* arg){
             case WRITE_F:
             	state = WRITE_STATE;
 				break;
+            case INPLACE:
+                state = IN_PLACE;
+                a.f.mode = IN_PLACE;
+                break;
             case HELP_A:
             	a.help = TRUE;
             	break;
             default:
             	wrong = c;
                 return UNKNOWN_ARG;
-            	break;
         }
     }
     return OK;
@@ -83,9 +89,10 @@ int pass(int argc,char** argv){
     
     a.exe = NULL;
     a.prg = NULL;
-    
-    a.ifile = NULL;
-    a.ofile = NULL;
+
+    a.f.mode = STANDARD;
+    a.f.ifile = NULL;
+    a.f.ofile = NULL;
 
     a.mode = FILE_MODE;
     a.help = FALSE;
@@ -103,12 +110,17 @@ int pass(int argc,char** argv){
         	  return ans;
         }
         else if(state == READ_STATE){
-        	a.ifile = arg;
+        	a.f.ifile = arg;
         	state = 0;
         }
         else if(state == WRITE_STATE){
-        	a.ofile = arg;
+        	a.f.ofile = arg;
         	state = 0;
+        }
+        else if(state == INPLACE_STATE){
+            a.f.ifile = arg;
+            a.f.mode = IN_PLACE;
+            state = 0;
         }
         else{
             if(a.mode == FILE_MODE)
