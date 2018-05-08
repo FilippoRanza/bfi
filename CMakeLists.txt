@@ -39,6 +39,6 @@ target_link_libraries(bfi readline)
 install(TARGETS bfi
         RUNTIME DESTINATION bin)
 
-install(FILES ${man/bfi.1} DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man1")
+install(FILES ${CMAKE_HOME_DIRECTORY}/man/bfi.1 DESTINATION "${CMAKE_INSTALL_PREFIX}/man/man1")
 
 
