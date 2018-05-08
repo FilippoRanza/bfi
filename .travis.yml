@@ -1,6 +1,6 @@
 language: c
 script:
-- cmake  && make && make install
+- cmake CMakeList.txt && make && make install
 - which bfi
 - man -f bfi
 
