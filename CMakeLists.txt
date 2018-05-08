@@ -34,5 +34,10 @@ add_executable(bfi
         src/warn_lib.c
         src/warn_lib.h)
 
+target_link_libraries(bfi readline)
+
+
+
+
 install(TARGETS bfi
         RUNTIME DESTINATION bin)
