@@ -5,9 +5,7 @@ bfi can execute programs from file,commmand line
 or its interactive shell.
 
 ## Installation: ##
-./configure
-make
-[sudo] make install
+cmake CMakeList.txt && make && make install
 
 ATTENTION:
 bfi needs GNU Readline library

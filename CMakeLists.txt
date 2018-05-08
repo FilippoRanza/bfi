@@ -34,19 +34,3 @@ add_executable(bfi
 
 install(TARGETS bfi
         RUNTIME DESTINATION bin)
-
-set(MAN_NAMES bfi.1)
-set(MAN_FILES)
-foreach(m IN LISTS MAN_NAMES)
-    set(mf ${CMAKE_BINARY_DIR}/${m})
-    set(ms ${CMAKE_SOURCE_DIR}/${m}.txt)
-    add_custom_command(OUTPUT ${mf}
-            COMMAND ${A2X_EXECUTABLE} ${A2X_OPTS} ${ms}
-            DEPENDS ${ms}
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-            COMMENT "Building manpage ${mf}"
-            VERBATIM)
-    list(APPEND MAN_FILES ${mf})
-endforeach()
-
-add_custom_target(man ALL DEPENDS ${MAN_FILES})
