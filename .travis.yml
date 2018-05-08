@@ -1,5 +1,6 @@
 language: c
 script:
+- sudo apt-get install libreadline6 libreadline6-dev
 - cmake CMakeLists.txt && make && make install
 - which bfi
 - man -f bfi
