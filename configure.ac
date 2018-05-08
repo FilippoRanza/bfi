@@ -1,8 +1,0 @@
-AC_INIT([bfi], [0.1])
-AC_CONFIG_SRCDIR([src])
-AM_INIT_AUTOMAKE([subdir-objects 1.11 -Wall -Werror])
-AC_CONFIG_FILES([Makefile])
-AC_PROG_CC
-AX_LIB_READLINE
-
-AC_OUTPUT
