@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.0)
 project(bfi C)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_VERBOSE_MAKEFILE on)
+
 include_directories(/usr/include/readline)
-set(CMAKE_C_FLAGS  "-lreadline")
+set(CMAKE_C_FLAGS "-lreadline")
 
 include_directories(src)
 
