@@ -36,8 +36,8 @@ add_executable(bfi
 
 target_link_libraries(bfi readline)
 
-
-
-
 install(TARGETS bfi
         RUNTIME DESTINATION bin)
+
+add_custom_target(man man/bfi.1)
+
