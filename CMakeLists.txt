@@ -39,4 +39,4 @@ target_link_libraries(bfi readline)
 install(TARGETS bfi
         RUNTIME DESTINATION bin)
 
-install(TARGETS ${man/bfi.1} DESTINATION /usr/share/man/man1)
+install(FILES ${man/bfi.1} DESTINATION /usr/share/man/man1)
