@@ -1,19 +1,32 @@
 # README
+[![Build Status](https://travis-ci.org/FilippoRanza/bfi.svg?branch=master)](https://travis-ci.org/FilippoRanza/bfi)
 ## What is bfi? ##
-bfi is a Brainfuck interpreter.
-bfi can execute programs from file,commmand line 
+bfi is a **Brainfuck** interpreter.
+bfi can execute programs from file,command line 
 or its interactive shell.
+
+This interpreter checks **Brainfuck** and make
+some simple _optimizations_ 
 
 ## Installation: ##
 cmake CMakeList.txt && make && make install
 
+After a successful installation you should run 
+**[sudo] mandb**, to update manpages databse.
+
+### Ubuntu ###
+Install, using apt(or equivalent), _libreadline6_ and _libreadline6-dev_
+
+### Arch ###
+Search on the **AUR**
+
 ATTENTION:
 bfi needs GNU Readline library
-ensure you have realine run-time and
+ensure you have readline run-time and
 developer version installed to compile
 and run bfi.
 
 ## Usage: ##
-bfi [option...] [-e code | file ] [argument..]
-for a complite guide read manual at
+bfi _[option...]_ _[-e code | file ]_ _[argument..]_
+for a complete guide read manual at
 man bfi
