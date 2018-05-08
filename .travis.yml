@@ -3,7 +3,7 @@ script:
 - sudo apt-get install libreadline6 libreadline6-dev
 - cmake CMakeLists.txt && make && sudo make install
 - which bfi
--file /usr/local/man/man1/bfi.1
+- file /usr/local/man/man1/bfi.1
 - man -f bfi
 
 
