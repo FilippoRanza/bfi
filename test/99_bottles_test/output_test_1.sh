@@ -21,7 +21,7 @@
 # this test runs '99_bottle.bf' , then checks it's output value
 # if output value differs from correct output this test fails.
 
-bfi  -w  99_bottles.test 99_bottles.bf
+bfi  99_bottles.bf > 99_bottles.test
 # equality check is performed using sha512sum
 TMP_HASH=$(sha512sum 99_bottles.test  | cut -f 1 -d  ' ' )
 OK_HASH=$(sha512sum 99_bottles.out | cut -f 1 -d  ' ')
