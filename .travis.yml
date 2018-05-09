@@ -4,5 +4,5 @@ script:
 - cmake CMakeLists.txt && make && sudo make install && sudo mandb
 - which bfi
 - man -f bfi
-
+- cd test && ./run_test.sh
 

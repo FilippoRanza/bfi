@@ -30,3 +30,14 @@ and run bfi.
 bfi _[option...]_ _[-e code | file ]_ _[argument..]_
 for a complete guide read manual at
 man bfi
+
+## Tests ##
+This program uses a custom test method:
+
+test directory contains server subdirectories, each implements a specific test,
+all those tests are run, and is every test success then the test is considered completed successfully.
+
+Each test checks a bfi's feature: submits some code in way accepted by bfi, then the output in compared 
+with expected  output, the test success if those outputs are equal, fails otherwise.
+ 
+ 
